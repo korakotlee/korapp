@@ -2,16 +2,16 @@ import os
 from setuptools import setup
 
 HERE = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(HERE, "README.md")) as fid:
+with open(os.path.join(HERE, "README.rst")) as fid:
     README = fid.read()
 
 setup(
     name='korapp',
     packages=['korapp'],  # this must be the same as the name above
-    version='0.1',
+    version='0.1.5',
     description='Python package to generate app from mind map',
+    # long_description_content_type="text/markdown",
     long_description=README,
-    long_description_content_type="text/markdown",
     author='Korakot Leemakdej',
     author_email='kleemakdej@gmail.com',
     url='https://github.com/korakotlee',
