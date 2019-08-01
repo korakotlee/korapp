@@ -4,14 +4,21 @@ KorApp
 .. figure:: https://github.com/korakotlee/img/raw/master/sample_mm.png
    :alt: 
 
-Python package to generate app.
+Python package to generate app. Korapp has 2 parts; the package itself
+and the brain. App creator can use different brain to create different
+kind of project. I have created a sample brain at
+https://github.com/korakotlee/brain-flutter-crud
 
 Installation
 ~~~~~~~~~~~~
 
 ::
 
+    ```
     pip install korapp
+
+    git clone <brain url> ~/.brain
+    ```
 
 For App Creator
 ~~~~~~~~~~~~~~~
@@ -27,9 +34,9 @@ Introduction
 -  open file ``app.mm`` to examine and make modification
 -  and run ``korapp gen``
 -  If you change the ``app.mm`` mind map, run ``korapp gen`` again to
-   regenerate the related files. Note that KorApp will overwrite its
-   generated files so whatever customization you make will be
-   overwritten. So if you want to modify the file, you can use the
+   regenerate the related files. Note that KorApp will always overwrite
+   its generated files. Whatever customization you make will be
+   overwritten. If you want to modify the file, you can use the
    generated file as template and copy to other file or inherit from
    them.
 -  However, the files created by ``korapp new`` will only generate once
@@ -40,8 +47,17 @@ Doc Server
 
 The brain can behave differently from brain to brain. App Creator can
 learn how each brain work from the document server. To access the
-document for the brain. ``cd <brain_dir>   korapp doc`` The document
-then can be access from http://127.0.0.1:8000/
+document for the brain.
+
+::
+
+    ```
+    cd <brain_dir>
+
+    korapp doc
+    ```
+
+The document then can be access from http://127.0.0.1:8000/
 
 For Brain Creator
 ~~~~~~~~~~~~~~~~~
@@ -49,20 +65,20 @@ For Brain Creator
 The brain is also work from mind map as well. To create a brain
 
 -  you need to write a mind map ``new.mm`` which will get run when app
-   creator issue ``korapp new``
+   creator issue ``korapp new`` command.
 -  put any script used by ``new.mm`` inside ``script/`` directory
--  in the ``gen/`` directory, write mind maps corresponding to the
-   branch that the app creator will be used in the first level branch,
-   i.e., ``models.mm`` will get run when they use ``model`` branch,
-   ``pages.mm`` for ``pages`` branch, and so on.
--  put all the script files under same ``script/`` directory.
+-  in the ``gen/`` directory, write mind maps with ``file_name.mm``
+   corresponding to the first level branch keyword that you will allow
+   the app creator to use, i.e., ``models.mm`` will get run when they
+   use ``models`` branch, ``pages.mm`` for ``pages`` branch, and so on.
+-  put all the script files under the same ``script/`` directory.
 
 Example of ``models.mm``
 
 |models|.
 
-The other directory structure are not required by KorApp, it depends on
-the script to use them.
+The other directory structure are not required by KorApp, you can freely
+create any structure however you want.
 
 Korapp New
 ^^^^^^^^^^
@@ -74,7 +90,7 @@ Korapp New
 
 -  Korapp will first look into ``new.mm`` and execute each branch. The
    first level node is command which can be either ``bash`` or
-   ``python`` (``py`` is the same as ``python``)
+   ``python``
 -  The second level branch is the script filename that is under script/
    directory of the brain.
 -  For bash, the script will run ``brain/script/<name>.sh``, the
@@ -102,7 +118,8 @@ Korapp Doc
 
 Each mind map (``.mm`` files) can have accompanied document file in the
 format of markdown. The doc server will concatenate together
-``README.md``, ``new.md`` and all .md files in the ``gen/`` directory
+``README.md``, ``new.md`` and all the .md files in the ``gen/``
+directory
 
 REFERENCE
 ---------
@@ -117,7 +134,15 @@ Brain Location
 
 -  default to ~/.brain
 -  can be specified by ``-b`` or ``--brain``
-   ``korapp new my_app -b ~/brain0``
+
+   ::
+
+       korapp new my_app -b ~/brain0
+
+Article
+~~~~~~~
+
+-  https://medium.com/@songrit/generate-flutter-app-using-korapp-6f78b4c7bb9
 
 .. |models| image:: https://github.com/korakotlee/img/raw/master/korapp/models.png
 

@@ -14,7 +14,7 @@ setup(
     long_description=README,
     author='Korakot Leemakdej',
     author_email='kleemakdej@gmail.com',
-    url='https://github.com/korakotlee',
+    url='https://github.com/korakotlee/korapp',
     keywords=['mind map', 'app generator'],  # arbitrary keywords
     install_requires=['untangle', 'stringcase', 'xmltodict', 'pyyaml', \
                       'Flask', 'markdown2'],
